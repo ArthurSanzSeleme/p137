@@ -12,6 +12,8 @@ paddle2Height = 70;
 score1 = 0;
 score2 = 0;
 
+noseX = 0;
+	noseY = 0;
 
 playerscore = 0;
 pcscore = 0;
@@ -29,9 +31,23 @@ ball = {
 }
 
 function setup(){
+  canvas = createCanvas(1240,336);
+	canvas.parent('canvas');
   canvas =  createCanvas(700,550);
-}
+  video = createCapture(VIDEO);
+	video.size(600,300);
+	poseNet =ml5.poseNet(video,modelLoaded);
+	poseNet.on('pose', gotPoses);
+	{
+		if(results.length >0)
+		
+		{	noseX = results[0].pose.nose.x;
+			noseX = results[0].pose.nose.y;
+			console.log("noseX = " + noseX +", noseY=" +noseY);
 
+		}
+}
+}
 
 function draw(){
 
